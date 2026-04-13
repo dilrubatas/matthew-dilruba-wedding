@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matthew &amp; Dilruba — May 16, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF7F2;
+  --petal:#F2E8E0;
+  --blush:#E5CCBC;
+  --rose:#B8614A;
+  --deep:#7A3B2E;
+  --sage:#8A9E7A;
+  --ink:#2C1F1A;
+  --muted:#8C7060;
+  --border:rgba(184,97,74,0.16);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;font-weight:300;background:var(--cream);color:var(--ink);min-height:100vh}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(250,247,242,0.96);backdrop-filter:blur(10px);
+  border-bottom:0.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;height:56px;
+}
+.nav-monogram{
+  position:absolute;left:1.5rem;
+  font-family:'Playfair Display',serif;font-size:14px;font-style:italic;
+  color:var(--rose);
+}
+.nav button{
+  background:none;border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);padding:6px 14px;
+  border-bottom:1.5px solid transparent;
+  transition:color 0.2s,border-color 0.2s;
+}
+.nav button.active,.nav button:hover{color:var(--rose);border-bottom-color:var(--rose)}
+
+/* PAGES */
+.page{display:none;padding-top:56px;min-height:100vh}
+.page.active{display:block}
+
+/* HERO */
+.hero{
+  min-height:calc(100vh - 56px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:3rem 2rem 4rem;position:relative;overflow:hidden;
+}
+.floral-tl{position:absolute;top:-10px;left:-10px;width:260px;opacity:0.25;pointer-events:none}
+.floral-br{position:absolute;bottom:-10px;right:-10px;width:260px;opacity:0.22;pointer-events:none;transform:rotate(180deg) scaleX(-1)}
+.hero-eyebrow{font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--sage);margin-bottom:1.5rem}
+.hero-names{font-family:'Playfair Display',serif;font-size:clamp(50px,9vw,92px);font-style:italic;font-weight:400;line-height:1.08}
+.hero-amp{color:var(--rose);display:block;font-size:0.58em;line-height:1.55}
+.divider{display:flex;align-items:center;gap:0.9rem;margin:1.75rem auto;width:200px}
+.divider-line{flex:1;height:0.5px;background:var(--blush)}
+.divider-gem{width:6px;height:6px;border-radius:50%;background:var(--rose)}
+.hero-date{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);line-height:2.4}
+.hero-venue{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:var(--rose);text-decoration:none;border-bottom:0.5px solid rgba(184,97,74,0.3);padding-bottom:1px}
+.hero-venue:hover{border-bottom-color:var(--rose)}
+.countdown{display:flex;gap:2.5rem;margin-top:2.5rem}
+.cd-unit{text-align:center}
+.cd-num{font-family:'Playfair Display',serif;font-size:38px;font-weight:400;display:block;color:var(--deep);line-height:1}
+.cd-lbl{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-top:5px;display:block}
+
+/* INNER PAGES */
+.inner{max-width:640px;margin:0 auto;padding:3.5rem 1.5rem 5rem}
+.page-header{text-align:center;margin-bottom:2.75rem}
+.page-eyebrow{font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--sage);margin-bottom:0.6rem}
+.page-title{font-family:'Playfair Display',serif;font-size:36px;font-style:italic;font-weight:400;color:var(--ink);line-height:1.15}
+.petal-rule{display:flex;align-items:center;justify-content:center;gap:0.6rem;margin-top:1rem}
+.petal-rule-line{width:32px;height:0.5px;background:var(--blush)}
+.petal-rule-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);opacity:0.6}
+
+/* EVENT CARD */
+.event-card{
+  border:0.5px solid var(--border);border-radius:14px;
+  padding:2rem;background:#fff;
+  display:flex;align-items:flex-start;gap:1.5rem;
+  position:relative;overflow:hidden;
+}
+.event-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rose);border-radius:3px 0 0 3px}
+.event-time-block{text-align:center;min-width:54px;flex-shrink:0}
+.event-time{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--rose);line-height:1;display:block}
+.event-ampm{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);display:block;margin-top:3px}
+.event-name{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--ink);margin-bottom:0.4rem}
+.event-detail{font-size:13px;color:var(--muted);line-height:1.75}
+
+/* VENUE BLOCK */
+.venue-block{margin-top:1.5rem;border:0.5px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;background:#fff}
+.block-label{font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage);margin-bottom:0.5rem}
+.block-title{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--ink);margin-bottom:0.3rem}
+.block-text{font-size:13px;color:var(--muted);line-height:1.75}
+.block-link{display:inline-block;margin-top:0.75rem;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--rose);text-decoration:none;border-bottom:0.5px solid rgba(184,97,74,0.3);padding-bottom:1px}
+.block-link:hover{border-bottom-color:var(--rose)}
+
+/* FORMS */
+.form-group{margin-bottom:1.25rem}
+.form-label{display:block;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.form-control{
+  width:100%;border:0.5px solid var(--blush);border-radius:8px;
+  padding:10px 14px;font-family:'Jost',sans-serif;font-size:14px;font-weight:300;
+  background:#fff;color:var(--ink);outline:none;transition:border-color 0.2s;
+  -webkit-appearance:auto;appearance:auto;
+}
+.form-control:focus{border-color:var(--rose)}
+.radio-group{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:4px}
+.radio-opt{display:flex;align-items:center;gap:7px;font-size:13px;cursor:pointer;color:var(--ink)}
+.radio-opt input{accent-color:var(--rose)}
+
+/* BUTTONS */
+.btn-rose{
+  width:100%;background:var(--rose);border:none;color:#fff;
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  padding:13px 28px;cursor:pointer;border-radius:8px;
+  transition:background 0.2s;margin-top:0.5rem;display:block;
+}
+.btn-rose:hover{background:var(--deep)}
+.btn-rose:disabled{opacity:0.6;cursor:not-allowed}
+.btn-outline{
+  display:inline-block;background:none;border:1px solid var(--rose);color:var(--rose);
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+  padding:8px 20px;cursor:pointer;border-radius:6px;text-decoration:none;
+  transition:background 0.2s,color 0.2s;
+}
+.btn-outline:hover{background:var(--rose);color:#fff}
+
+/* SUCCESS */
+.success-msg{display:none;text-align:center;padding:2rem 1rem;font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--rose);line-height:1.75}
+
+/* REGISTRY TABS */
+.reg-tabs{display:flex;border-bottom:0.5px solid var(--border);margin-bottom:2rem}
+.reg-tab{
+  background:none;border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;font-weight:300;
+  font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--muted);padding:8px 18px 11px;
+  border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:all 0.2s;
+}
+.reg-tab.active{color:var(--rose);border-bottom-color:var(--rose)}
+.reg-panel{display:none}
+.reg-panel.active{display:block}
+
+/* AMAZON CARD */
+.amazon-card{border:0.5px solid var(--border);border-radius:14px;padding:1.75rem;background:#fff;display:flex;align-items:flex-start;gap:1.25rem}
+.amazon-icon-wrap{width:46px;height:46px;border-radius:50%;background:var(--petal);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.amazon-card-title{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--ink);margin-bottom:5px}
+.amazon-card-desc{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:0.85rem}
+
+/* FUND */
+.fund-hero{text-align:center;padding:2rem 1.5rem 1.75rem;border:0.5px solid var(--border);border-radius:14px;background:#fff;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.fund-hero-floral{position:absolute;right:-15px;top:-15px;width:130px;opacity:0.15;pointer-events:none}
+.fund-hero-icon{font-size:32px;margin-bottom:0.75rem}
+.fund-hero-title{font-family:'Playfair Display',serif;font-size:24px;font-style:italic;color:var(--ink);margin-bottom:0.5rem}
+.fund-hero-text{font-size:13px;color:var(--muted);line-height:1.8;max-width:380px;margin:0 auto}
+
+/* AMOUNT PICKER */
+.amount-section{border:0.5px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;background:#fff;margin-bottom:1.25rem}
+.amounts-grid{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.amt-btn{
+  background:none;border:0.5px solid var(--blush);border-radius:7px;
+  font-family:'Jost',sans-serif;font-size:13px;font-weight:300;
+  padding:8px 18px;cursor:pointer;color:var(--ink);transition:all 0.15s;
+}
+.amt-btn:hover,.amt-btn.active{border-color:var(--rose);color:var(--rose);background:rgba(184,97,74,0.04)}
+.or-divider{display:flex;align-items:center;gap:0.75rem;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin:0.9rem 0}
+.or-divider::before,.or-divider::after{content:'';flex:1;height:0.5px;background:var(--blush)}
+
+/* ZELLE */
+.zelle-card{border:0.5px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;background:#fff;display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.zelle-badge{width:46px;height:46px;border-radius:50%;background:#6D1ED4;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:400;flex-shrink:0}
+.zelle-info{flex:1}
+.zelle-label{font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.zelle-handle{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--rose)}
+.zelle-note{font-size:11px;color:var(--muted);margin-top:2px}
+.copy-btn{background:none;border:0.5px solid var(--blush);border-radius:6px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:7px 13px;cursor:pointer;color:var(--muted);flex-shrink:0;transition:all 0.15s}
+.copy-btn:hover,.copy-btn.copied{border-color:var(--rose);color:var(--rose)}
+
+.memo-row{display:flex;align-items:center;gap:0.75rem;background:var(--petal);border-radius:8px;padding:0.9rem 1.1rem;margin-bottom:1.5rem}
+.memo-label-sm{font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.memo-value{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:var(--deep);flex:1}
+
+.note-section{border:0.5px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;background:#fff;margin-top:1.25rem}
+
+/* RESPONSIVE */
+@media(max-width:500px){
+  .nav-monogram{display:none}
+  .nav button{font-size:9.5px;padding:6px 10px}
+  .hero-names{font-size:clamp(40px,13vw,60px)}
+  .countdown{gap:1.5rem}
+  .cd-num{font-size:30px}
+  .event-card{flex-direction:column;gap:0.75rem}
+  .event-card::before{width:100%;height:3px;top:0;bottom:auto;border-radius:14px 14px 0 0}
+  .amazon-card{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-monogram">M &amp; D</span>
+  <button class="active" onclick="showPage('home',this)">Home</button>
+  <button onclick="showPage('details',this)">Details</button>
+  <button onclick="showPage('rsvp',this)">RSVP</button>
+  <button onclick="showPage('registry',this)">Registry</button>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="hero">
+    <svg class="floral-tl" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="62" cy="180" rx="18" ry="32" fill="#B8614A" transform="rotate(-30 62 180)"/>
+      <ellipse cx="88" cy="155" rx="16" ry="28" fill="#C4715A" transform="rotate(-8 88 155)"/>
+      <ellipse cx="40" cy="157" rx="15" ry="26" fill="#D4856A" transform="rotate(-55 40 157)"/>
+      <ellipse cx="64" cy="136" rx="13" ry="23" fill="#B8614A" transform="rotate(12 64 136)"/>
+      <ellipse cx="97" cy="180" rx="14" ry="24" fill="#C4715A" transform="rotate(22 97 180)"/>
+      <circle cx="63" cy="166" r="11" fill="#7A3B2E"/>
+      <path d="M63 166 Q42 122 22 78" stroke="#8A9E7A" stroke-width="2.5" fill="none"/>
+      <path d="M63 166 Q92 112 114 58" stroke="#8A9E7A" stroke-width="2.5" fill="none"/>
+      <path d="M63 166 Q18 162 0 172" stroke="#8A9E7A" stroke-width="2" fill="none"/>
+      <ellipse cx="36" cy="100" rx="10" ry="17" fill="#8A9E7A" transform="rotate(-22 36 100)"/>
+      <ellipse cx="90" cy="84" rx="9" ry="16" fill="#8A9E7A" transform="rotate(16 90 84)"/>
+      <ellipse cx="132" cy="54" rx="13" ry="23" fill="#B8614A" transform="rotate(32 132 54)"/>
+      <ellipse cx="158" cy="33" rx="11" ry="20" fill="#C4715A" transform="rotate(-14 158 33)"/>
+      <circle cx="133" cy="47" r="8" fill="#7A3B2E"/>
+      <path d="M133 47 Q112 18 90 0" stroke="#8A9E7A" stroke-width="2" fill="none"/>
+      <path d="M133 47 Q162 28 182 8" stroke="#8A9E7A" stroke-width="2" fill="none"/>
+      <ellipse cx="94" cy="13" rx="7" ry="13" fill="#8A9E7A" transform="rotate(-26 94 13)"/>
+      <ellipse cx="178" cy="16" rx="8" ry="14" fill="#8A9E7A" transform="rotate(22 178 16)"/>
+    </svg>
+    <svg class="floral-br" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="62" cy="180" rx="18" ry="32" fill="#B8614A" transform="rotate(-30 62 180)"/>
+      <ellipse cx="88" cy="155" rx="16" ry="28" fill="#C4715A" transform="rotate(-8 88 155)"/>
+      <ellipse cx="40" cy="157" rx="15" ry="26" fill="#D4856A" transform="rotate(-55 40 157)"/>
+      <ellipse cx="64" cy="136" rx="13" ry="23" fill="#B8614A" transform="rotate(12 64 136)"/>
+      <circle cx="63" cy="166" r="11" fill="#7A3B2E"/>
+      <path d="M63 166 Q42 122 22 78" stroke="#8A9E7A" stroke-width="2.5" fill="none"/>
+      <path d="M63 166 Q92 112 114 58" stroke="#8A9E7A" stroke-width="2.5" fill="none"/>
+      <ellipse cx="36" cy="100" rx="10" ry="17" fill="#8A9E7A" transform="rotate(-22 36 100)"/>
+      <ellipse cx="132" cy="54" rx="13" ry="23" fill="#B8614A" transform="rotate(32 132 54)"/>
+      <circle cx="133" cy="47" r="8" fill="#7A3B2E"/>
+      <path d="M133 47 Q112 18 90 0" stroke="#8A9E7A" stroke-width="2" fill="none"/>
+      <ellipse cx="94" cy="13" rx="7" ry="13" fill="#8A9E7A" transform="rotate(-26 94 13)"/>
+    </svg>
+
+    <p class="hero-eyebrow">You are invited to celebrate</p>
+    <div class="hero-names">
+      Matthew
+      <span class="hero-amp">&amp;</span>
+      Dilruba
+    </div>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-gem"></div>
+      <div class="divider-line"></div>
+    </div>
+    <p class="hero-date">
+      Saturday, May 16, 2026<br>
+      <a href="https://thehouseontheriver.com" target="_blank" class="hero-venue">The House on the River</a><br>
+      Fort Lauderdale, Florida
+    </p>
+    <div class="countdown">
+      <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-lbl">Days</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-hrs">--</span><span class="cd-lbl">Hours</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-min">--</span><span class="cd-lbl">Minutes</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAILS -->
+<div id="details" class="page">
+  <div class="inner">
+    <div class="page-header">
+      <p class="page-eyebrow">Saturday, May 16, 2026</p>
+      <h1 class="page-title">Wedding Details</h1>
+      <div class="petal-rule"><div class="petal-rule-line"></div><div class="petal-rule-dot"></div><div class="petal-rule-line"></div></div>
+    </div>
+    <div class="event-card">
+      <div class="event-time-block">
+        <span class="event-time">6–9</span>
+        <span class="event-ampm">PM</span>
+      </div>
+      <div>
+        <div class="event-name">Wedding Dinner</div>
+        <div class="event-detail">Join us for an intimate dinner celebration on the banks of the New River. Cocktail service begins at 6:00 pm with dinner to follow. Formal attire is requested.</div>
+      </div>
+    </div>
+    <div class="venue-block">
+      <div class="block-label">Venue</div>
+      <div class="block-title">The House on the River</div>
+      <div class="block-text">301 SW 3rd Avenue, Fort Lauderdale, FL 33312<br>(954) 825-2929</div>
+      <div class="block-text" style="margin-top:0.75rem;font-style:italic;">A historic 1903 waterfront estate nestled beneath a canopy of trees on the New River in downtown Fort Lauderdale. The venue features riverside patios, lush grounds, and intimate interiors with old-world charm.</div>
+      <a href="https://thehouseontheriver.com" target="_blank" class="block-link">Visit venue website</a>
+    </div>
+  </div>
+</div>
+
+<!-- RSVP -->
+<div id="rsvp" class="page">
+  <div class="inner">
+    <div class="page-header">
+      <p class="page-eyebrow">Kindly reply by April 16, 2026</p>
+      <h1 class="page-title">RSVP</h1>
+      <div class="petal-rule"><div class="petal-rule-line"></div><div class="petal-rule-dot"></div><div class="petal-rule-line"></div></div>
+    </div>
+    <div id="rsvp-form">
+      <div class="form-group">
+        <label class="form-label">Full name</label>
+        <input class="form-control" type="text" id="r-name" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email address</label>
+        <input class="form-control" type="email" id="r-email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Number of guests</label>
+        <select class="form-control" id="r-guests">
+          <option value="1">1 — just me</option>
+          <option value="2">2 — myself and a guest</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Attendance</label>
+        <div class="radio-group">
+          <label class="radio-opt"><input type="radio" name="attend" value="yes" checked> Joyfully accepts</label>
+          <label class="radio-opt"><input type="radio" name="attend" value="no"> Regretfully declines</label>
+        </div>
+      </div>
+      <div class="form-group" id="meal-group">
+        <label class="form-label">Meal preference</label>
+        <select class="form-control" id="r-meal">
+          <option value="">Select one</option>
+          <option>Fish</option>
+          <option>Meat</option>
+          <option>Vegetarian</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Dietary restrictions or notes</label>
+        <textarea class="form-control" id="r-notes" rows="3" placeholder="Allergies, plus-one name, anything we should know..."></textarea>
+      </div>
+      <button class="btn-rose" id="rsvp-btn" onclick="submitRSVP()">Send my RSVP</button>
+    </div>
+    <div class="success-msg" id="rsvp-success">Thank you, <span id="rsvp-name-out"></span>.<br>We cannot wait to celebrate with you.</div>
+  </div>
+</div>
+
+<!-- REGISTRY -->
+<div id="registry" class="page">
+  <div class="inner">
+    <div class="page-header">
+      <p class="page-eyebrow">Your presence is the greatest gift</p>
+      <h1 class="page-title">Registry</h1>
+      <div class="petal-rule"><div class="petal-rule-line"></div><div class="petal-rule-dot"></div><div class="petal-rule-line"></div></div>
+    </div>
+    <div class="reg-tabs">
+      <button class="reg-tab active" onclick="showReg('wishlist',this)">Wish list</button>
+      <button class="reg-tab" onclick="showReg('honeymoon',this)">Honeymoon fund</button>
+    </div>
+
+    <!-- WISH LIST -->
+    <div id="wishlist" class="reg-panel active">
+      <div class="amazon-card">
+        <div class="amazon-icon-wrap">&#128722;</div>
+        <div>
+          <div class="amazon-card-title">Amazon Wedding Registry</div>
+          <div class="amazon-card-desc">We have put together a wish list of items for our home together. Every gift, large or small, means the world to us.</div>
+          <a class="btn-outline" href="https://www.amazon.com/hz/wishlist/ls/2VOK0N7PLLI5W" target="_blank">View our Amazon registry</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HONEYMOON FUND -->
+    <div id="honeymoon" class="reg-panel">
+
+      <div class="fund-hero">
+        <svg class="fund-hero-floral" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="130" rx="18" ry="30" fill="#B8614A" transform="rotate(-20 100 130)"/>
+          <ellipse cx="126" cy="110" rx="15" ry="26" fill="#C4715A" transform="rotate(10 126 110)"/>
+          <ellipse cx="78" cy="112" rx="14" ry="24" fill="#D4856A" transform="rotate(-50 78 112)"/>
+          <circle cx="102" cy="118" r="10" fill="#7A3B2E"/>
+          <path d="M102 118 Q80 80 60 50" stroke="#8A9E7A" stroke-width="2" fill="none"/>
+          <path d="M102 118 Q130 75 152 40" stroke="#8A9E7A" stroke-width="2" fill="none"/>
+          <ellipse cx="64" cy="44" rx="9" ry="15" fill="#8A9E7A" transform="rotate(-16 64 44)"/>
+          <ellipse cx="150" cy="32" rx="8" ry="14" fill="#8A9E7A" transform="rotate(20 150 32)"/>
+        </svg>
+        <div class="fund-hero-icon">&#9992;&#65039;</div>
+        <div class="fund-hero-title">Honeymoon Fund</div>
+        <div class="fund-hero-text">Your generosity is the greatest gift. Any contribution toward our honeymoon is deeply appreciated.</div>
+      </div>
+
+      <!-- STEP 1: AMOUNT -->
+      <div class="amount-section">
+        <label class="form-label" style="margin-bottom:0.75rem;">Step 1 — Choose an amount</label>
+        <div class="amounts-grid">
+          <button class="amt-btn" onclick="pickAmt(this)">$25</button>
+          <button class="amt-btn" onclick="pickAmt(this)">$50</button>
+          <button class="amt-btn" onclick="pickAmt(this)">$100</button>
+          <button class="amt-btn" onclick="pickAmt(this)">$150</button>
+        </div>
+        <div class="or-divider">or enter your own</div>
+        <input class="form-control" type="number" id="custom-amt" placeholder="Custom amount ($)" min="1" step="1" oninput="clearPreset()">
+      </div>
+
+      <!-- STEP 2: SEND VIA ZELLE -->
+      <div style="margin:1.25rem 0;">
+        <label class="form-label" style="margin-bottom:0.75rem;">Step 2 — Send via Zelle</label>
+        <div class="zelle-card">
+          <div class="zelle-badge">Zelle</div>
+          <div class="zelle-info">
+            <div class="zelle-label">Phone number</div>
+            <div class="zelle-handle" id="zelle-handle">(954) 609-0606</div>
+            <div class="zelle-note">Open your banking app, search this number, and send.</div>
+          </div>
+          <button class="copy-btn" id="copy-btn" onclick="copyZelle()">Copy</button>
+        </div>
+        <div class="memo-row">
+          <span class="memo-label-sm">Memo</span>
+          <span class="memo-value">Matthew &amp; Dilruba honeymoon</span>
+        </div>
+        <button class="btn-rose" onclick="openZelle()">Open Zelle app</button>
+      </div>
+
+      <!-- STEP 3: LEAVE A NOTE -->
+      <div class="note-section">
+        <label class="form-label" style="margin-bottom:0.75rem;">Step 3 — Leave a note (optional)</label>
+        <div class="form-group">
+          <label class="form-label">Your name</label>
+          <input class="form-control" type="text" id="note-name" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-control" id="note-text" rows="3" placeholder="A message for Matthew &amp; Dilruba..."></textarea>
+        </div>
+        <button class="btn-rose" id="note-btn" onclick="submitNote()">Send note</button>
+        <div class="success-msg" id="note-success">Thank you for your generous gift.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   SETTINGS — edit only this block
+   ===================================================== */
+var CFG = {
+  partner1:       "Matthew",
+  partner2:       "Dilruba",
+  weddingDate:    "Saturday, May 16, 2026",
+  weddingISO:     "2026-05-16T18:00:00",
+  city:           "Fort Lauderdale, Florida",
+  venueName:      "The House on the River",
+  venueAddress:   "301 SW 3rd Avenue, Fort Lauderdale, FL 33312",
+  venuePhone:     "(954) 825-2929",
+  venueWebsite:   "https://thehouseontheriver.com",
+  rsvpDeadline:   "April 16, 2026",
+  formspreeId:    "xkoknrzr",
+  amazonUrl:      "https://www.amazon.com/hz/wishlist/ls/2VOK0N7PLLI5W",
+  zellePhone:     "9546090606",
+  zelleDisplay:   "(954) 609-0606",
+  honeymoonMemo:  "Matthew & Dilruba honeymoon",
+  mealOptions:    ["Fish", "Meat", "Vegetarian"],
+  fundAmounts:    [25, 50, 100, 150]
+};
+/* =====================================================
+   END OF SETTINGS
+   ===================================================== */
+
+/* PAGE NAV */
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.nav button').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+/* REGISTRY TABS */
+function showReg(id, btn) {
+  document.querySelectorAll('.reg-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.reg-tab').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* RSVP — hide meal when declining */
+document.querySelectorAll('input[name="attend"]').forEach(function(r) {
+  r.addEventListener('change', function() {
+    document.getElementById('meal-group').style.display = this.value === 'yes' ? 'block' : 'none';
+  });
+});
+
+/* RSVP SUBMIT */
+async function submitRSVP() {
+  var name  = document.getElementById('r-name').value.trim();
+  var email = document.getElementById('r-email').value.trim();
+  var guests = document.getElementById('r-guests').value;
+  var attend = document.querySelector('input[name="attend"]:checked').value;
+  var meal  = document.getElementById('r-meal').value;
+  var notes = document.getElementById('r-notes').value.trim();
+
+  if (!name) { document.getElementById('r-name').focus(); return; }
+
+  var btn = document.getElementById('rsvp-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    var res = await fetch('https://formspree.io/f/' + CFG.formspreeId, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Wedding RSVP from ' + name,
+        _replyto: 'dtas@ufl.edu',
+        name: name,
+        email: email,
+        guests: guests,
+        attendance: attend === 'yes' ? 'Joyfully accepts' : 'Regretfully declines',
+        meal_preference: meal || 'Not specified',
+        notes: notes || 'None'
+      })
+    });
+    if (!res.ok) {
+      var err = await res.json().catch(function(){ return {}; });
+      btn.textContent = 'Send my RSVP';
+      btn.disabled = false;
+      alert('Could not send RSVP (' + (err.error || res.status) + '). Please try again.');
+      return;
+    }
+  } catch(e) {
+    btn.textContent = 'Send my RSVP';
+    btn.disabled = false;
+    alert('Network error. Please check your connection and try again.');
+    return;
+  }
+
+  document.getElementById('rsvp-name-out').textContent = name.split(' ')[0];
+  document.getElementById('rsvp-form').style.display = 'none';
+  document.getElementById('rsvp-success').style.display = 'block';
+}
+
+/* FUND AMOUNT PICKER */
+function pickAmt(btn) {
+  document.querySelectorAll('.amt-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('custom-amt').value = '';
+}
+
+function clearPreset() {
+  document.querySelectorAll('.amt-btn').forEach(function(b){ b.classList.remove('active'); });
+}
+
+/* ZELLE COPY */
+function copyZelle() {
+  var handle = CFG.zelleDisplay;
+  navigator.clipboard.writeText(handle).then(function() {
+    var btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2500);
+  });
+}
+
+/* ZELLE DEEP LINK */
+function openZelle() {
+  var customVal = document.getElementById('custom-amt').value;
+  var activeBtn = document.querySelector('.amt-btn.active');
+  var amount = customVal
+    ? parseFloat(customVal).toFixed(2)
+    : (activeBtn ? parseFloat(activeBtn.textContent.replace('$','')).toFixed(2) : null);
+
+  var url = 'zelle://send?phone=' + CFG.zellePhone;
+  if (amount) url += '&amount=' + amount;
+  url += '&note=' + encodeURIComponent(CFG.honeymoonMemo);
+
+  window.location.href = url;
+}
+
+/* NOTE SUBMIT */
+async function submitNote() {
+  var name = document.getElementById('note-name').value.trim();
+  var text = document.getElementById('note-text').value.trim();
+  var customVal = document.getElementById('custom-amt').value;
+  var activeBtn = document.querySelector('.amt-btn.active');
+  var amt = customVal ? '$' + customVal : (activeBtn ? activeBtn.textContent : 'Not specified');
+
+  if (!name) { document.getElementById('note-name').focus(); return; }
+
+  var btn = document.getElementById('note-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    var res = await fetch('https://formspree.io/f/' + CFG.formspreeId, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'Honeymoon fund note from ' + name,
+        _replyto: 'dtas@ufl.edu',
+        name: name,
+        amount_sent: amt,
+        message: text || '(no message)'
+      })
+    });
+    if (!res.ok) {
+      var err = await res.json().catch(function(){ return {}; });
+      btn.textContent = 'Send note';
+      btn.disabled = false;
+      alert('Could not send note (' + (err.error || res.status) + '). Please try again.');
+      return;
+    }
+  } catch(e) {
+    btn.textContent = 'Send note';
+    btn.disabled = false;
+    alert('Network error. Please check your connection and try again.');
+    return;
+  }
+
+  document.getElementById('note-success').style.display = 'block';
+  document.getElementById('note-name').value = '';
+  document.getElementById('note-text').value = '';
+  btn.textContent = 'Send note';
+  btn.disabled = false;
+  setTimeout(function(){ document.getElementById('note-success').style.display = 'none'; }, 5000);
+}
+
+/* COUNTDOWN */
+function updateCountdown() {
+  var target = new Date(CFG.weddingISO);
+  var diff = target - new Date();
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '0';
+    document.getElementById('cd-hrs').textContent = '0';
+    document.getElementById('cd-min').textContent = '0';
+    return;
+  }
+  document.getElementById('cd-days').textContent = Math.floor(diff / 86400000);
+  document.getElementById('cd-hrs').textContent = Math.floor((diff % 86400000) / 3600000);
+  document.getElementById('cd-min').textContent = Math.floor((diff % 3600000) / 60000);
+}
+
+updateCountdown();
+setInterval(updateCountdown, 30000);
+</script>
+</body>
+</html>

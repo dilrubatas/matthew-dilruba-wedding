@@ -293,7 +293,7 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--cream);color
       </div>
       <div>
         <div class="event-name">Wedding Dinner</div>
-        <div class="event-detail">Join us for an intimate dinner celebration on the banks of the New River. Cocktail service begins at 6:00 pm with dinner to follow. Formal attire is requested.</div>
+        <div class="event-detail">Join us for an intimate dinner celebration on the banks of the New River. Cocktail service begins at 6:00 pm with dinner to follow.</div>
       </div>
     </div>
     <div class="venue-block">
@@ -337,15 +337,7 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--cream);color
           <label class="radio-opt"><input type="radio" name="attend" value="no"> Regretfully declines</label>
         </div>
       </div>
-      <div class="form-group" id="meal-group">
-        <label class="form-label">Meal preference</label>
-        <select class="form-control" id="r-meal">
-          <option value="">Select one</option>
-          <option>Fish</option>
-          <option>Meat</option>
-          <option>Vegetarian</option>
-        </select>
-      </div>
+
       <div class="form-group">
         <label class="form-label">Dietary restrictions or notes</label>
         <textarea class="form-control" id="r-notes" rows="3" placeholder="Allergies, plus-one name, anything we should know..."></textarea>
@@ -429,7 +421,6 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--cream);color
           <span class="memo-label-sm">Memo</span>
           <span class="memo-value">Matthew &amp; Dilruba honeymoon</span>
         </div>
-        <button class="btn-rose" onclick="openZelle()">Open Zelle app</button>
       </div>
 
       <!-- STEP 3: LEAVE A NOTE -->
@@ -495,20 +486,12 @@ function showReg(id, btn) {
   btn.classList.add('active');
 }
 
-/* RSVP — hide meal when declining */
-document.querySelectorAll('input[name="attend"]').forEach(function(r) {
-  r.addEventListener('change', function() {
-    document.getElementById('meal-group').style.display = this.value === 'yes' ? 'block' : 'none';
-  });
-});
-
 /* RSVP SUBMIT */
 async function submitRSVP() {
   var name  = document.getElementById('r-name').value.trim();
   var email = document.getElementById('r-email').value.trim();
   var guests = document.getElementById('r-guests').value;
   var attend = document.querySelector('input[name="attend"]:checked').value;
-  var meal  = document.getElementById('r-meal').value;
   var notes = document.getElementById('r-notes').value.trim();
 
   if (!name) { document.getElementById('r-name').focus(); return; }
@@ -528,7 +511,6 @@ async function submitRSVP() {
         email: email,
         guests: guests,
         attendance: attend === 'yes' ? 'Joyfully accepts' : 'Regretfully declines',
-        meal_preference: meal || 'Not specified',
         notes: notes || 'None'
       })
     });
@@ -571,21 +553,6 @@ function copyZelle() {
     btn.classList.add('copied');
     setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2500);
   });
-}
-
-/* ZELLE DEEP LINK */
-function openZelle() {
-  var customVal = document.getElementById('custom-amt').value;
-  var activeBtn = document.querySelector('.amt-btn.active');
-  var amount = customVal
-    ? parseFloat(customVal).toFixed(2)
-    : (activeBtn ? parseFloat(activeBtn.textContent.replace('$','')).toFixed(2) : null);
-
-  var url = 'zelle://send?phone=' + CFG.zellePhone;
-  if (amount) url += '&amount=' + amount;
-  url += '&note=' + encodeURIComponent(CFG.honeymoonMemo);
-
-  window.location.href = url;
 }
 
 /* NOTE SUBMIT */

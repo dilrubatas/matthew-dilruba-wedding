@@ -164,18 +164,6 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--cream);color
 .fund-hero-title{font-family:'Playfair Display',serif;font-size:24px;font-style:italic;color:var(--ink);margin-bottom:0.5rem}
 .fund-hero-text{font-size:13px;color:var(--muted);line-height:1.8;max-width:380px;margin:0 auto}
 
-/* AMOUNT PICKER */
-.amount-section{border:0.5px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;background:#fff;margin-bottom:1.25rem}
-.amounts-grid{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:1rem}
-.amt-btn{
-  background:none;border:0.5px solid var(--blush);border-radius:7px;
-  font-family:'Jost',sans-serif;font-size:13px;font-weight:300;
-  padding:8px 18px;cursor:pointer;color:var(--ink);transition:all 0.15s;
-}
-.amt-btn:hover,.amt-btn.active{border-color:var(--rose);color:var(--rose);background:rgba(184,97,74,0.04)}
-.or-divider{display:flex;align-items:center;gap:0.75rem;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin:0.9rem 0}
-.or-divider::before,.or-divider::after{content:'';flex:1;height:0.5px;background:var(--blush)}
-
 /* ZELLE */
 .zelle-card{border:0.5px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;background:#fff;display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
 .zelle-badge{width:46px;height:46px;border-radius:50%;background:#6D1ED4;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:400;flex-shrink:0}
@@ -392,22 +380,9 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--cream);color
         <div class="fund-hero-text">Your generosity is the greatest gift. Any contribution toward our honeymoon is deeply appreciated.</div>
       </div>
 
-      <!-- STEP 1: AMOUNT -->
-      <div class="amount-section">
-        <label class="form-label" style="margin-bottom:0.75rem;">Step 1 — Choose an amount</label>
-        <div class="amounts-grid">
-          <button class="amt-btn" onclick="pickAmt(this)">$25</button>
-          <button class="amt-btn" onclick="pickAmt(this)">$50</button>
-          <button class="amt-btn" onclick="pickAmt(this)">$100</button>
-          <button class="amt-btn" onclick="pickAmt(this)">$150</button>
-        </div>
-        <div class="or-divider">or enter your own</div>
-        <input class="form-control" type="number" id="custom-amt" placeholder="Custom amount ($)" min="1" step="1" oninput="clearPreset()">
-      </div>
-
-      <!-- STEP 2: SEND VIA ZELLE -->
+      <!-- SEND VIA ZELLE -->
       <div style="margin:1.25rem 0;">
-        <label class="form-label" style="margin-bottom:0.75rem;">Step 2 — Send via Zelle</label>
+        <label class="form-label" style="margin-bottom:0.75rem;">Step 1 — Send via Zelle</label>
         <div class="zelle-card">
           <div class="zelle-badge">Zelle</div>
           <div class="zelle-info">
@@ -423,9 +398,9 @@ body{font-family:'Jost',sans-serif;font-weight:300;background:var(--cream);color
         </div>
       </div>
 
-      <!-- STEP 3: LEAVE A NOTE -->
+      <!-- STEP 2: LEAVE A NOTE -->
       <div class="note-section">
-        <label class="form-label" style="margin-bottom:0.75rem;">Step 3 — Leave a note (optional)</label>
+        <label class="form-label" style="margin-bottom:0.75rem;">Step 2 — Leave a note (optional)</label>
         <div class="form-group">
           <label class="form-label">Your name</label>
           <input class="form-control" type="text" id="note-name" placeholder="Your name">
@@ -461,9 +436,7 @@ var CFG = {
   amazonUrl:      "https://www.amazon.com/hz/wishlist/ls/2VOK0N7PLLI5W",
   zellePhone:     "9546090606",
   zelleDisplay:   "(954) 609-0606",
-  honeymoonMemo:  "Matthew & Dilruba honeymoon",
-  mealOptions:    ["Fish", "Meat", "Vegetarian"],
-  fundAmounts:    [25, 50, 100, 150]
+  honeymoonMemo:  "Matthew & Dilruba honeymoon"
 };
 /* =====================================================
    END OF SETTINGS
@@ -533,16 +506,6 @@ async function submitRSVP() {
   document.getElementById('rsvp-success').style.display = 'block';
 }
 
-/* FUND AMOUNT PICKER */
-function pickAmt(btn) {
-  document.querySelectorAll('.amt-btn').forEach(function(b){ b.classList.remove('active'); });
-  btn.classList.add('active');
-  document.getElementById('custom-amt').value = '';
-}
-
-function clearPreset() {
-  document.querySelectorAll('.amt-btn').forEach(function(b){ b.classList.remove('active'); });
-}
 
 /* ZELLE COPY */
 function copyZelle() {
@@ -577,7 +540,6 @@ async function submitNote() {
         _subject: 'Honeymoon fund note from ' + name,
         _replyto: 'dtas@ufl.edu',
         name: name,
-        amount_sent: amt,
         message: text || '(no message)'
       })
     });
